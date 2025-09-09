@@ -1,83 +1,101 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Node{
-public:
-    int data;
+    public:
     Node* next;
-    Node(int val){data=val;next=NULL;}
+    int data;
+    Node(int val){
+        data = val;
+        next=NULL;
+    }
 };
 
-class LinkedList{
-    public:
+class List{
     Node* head;
-    LinkedList(){
-        head=NULL;
+    Node* tail;
+    public:
+    List(){
+        head=tail=NULL;
     }
-    void insertEnd(int val){
+
+    void push_front(int val){
         Node* newNode=new Node(val);
-        if(head==NULL){head=newNode;return;}
-        Node* temp=head;
-        while(temp->next!=NULL) temp=temp->next;
-        temp->next=newNode;
-    }
-    void insertFront(int val){
-        Node* newNode=new Node(val);
+        if(head==NULL){
+            head=tail=newNode;
+            return;
+        }
         newNode->next=head;
         head=newNode;
     }
-    void insertAt(int val,int pos){
-        if(pos==1){insertFront(val);return;}
-        Node* temp=head;
-        for(int i=1;i<pos-1&&temp!=NULL;i++) temp=temp->next;
-        if(temp==NULL) return;
+
+    void push_back(int val){
         Node* newNode=new Node(val);
+        if(head==NULL){
+            head=tail=newNode;
+            return;
+        }
+        tail->next=newNode;
+        tail=newNode;
+    }
+
+    void intsert_at(int val, int pos){
+        Node* newNode=new Node(val);
+        Node* temp=head;
+        if(pos<0){
+            cout<<"invalid position!"<<endl;
+            return;
+        }
+        if(pos==1){
+            push_front(val);
+            return;
+        }
+        for(int i=0; i<pos-1; i++){
+            temp=temp->next;
+        }
         newNode->next=temp->next;
         temp->next=newNode;
     }
-    void deleteVal(int key){
-        Node* temp=head;Node* prev=NULL;
+
+    void deleteVal(int val){
+        Node*temp=head;
+        Node*prev=NULL;
         while(temp!=NULL){
-            if(temp->data==key){
+            if(temp->data==val){
                 if(prev==NULL) head=temp->next;
                 else prev->next=temp->next;
-                delete temp;return;
+                delete temp; 
+                return;
             }
-            prev=temp;temp=temp->next;
+            prev=temp;
+            temp=temp->next;
         }
     }
-    void printList(){
+    void printll(){
         Node* temp=head;
-        while(temp!=NULL){cout<<temp->data<<" ";temp=temp->next;}
-        cout<<endl;
+        while(temp!=NULL){
+            cout<<temp->data<<" -> ";
+            temp=temp->next;
+        }
+        cout<<"NULL"<<endl;
+
     }
 };
 
-int main(){
+int main() {
+    int* arr=new int[5]{3,1,2,5,8};
 
-    int arr[5]={3,1,2,5,8};
-
-    cout<<"Array: ";
-    for(int i=0;i<5;i++){
-        cout<<arr[i]<<" ";
+    List ll;
+    for(int i=0; i<5; i++){
+        ll.push_back(arr[i]);
     }
-    cout<<endl;
-
-    LinkedList list;
-    for(int i=0;i<5;i++) {
-        list.insertEnd(arr[i]);
-    }
-    cout<<"Initial Linked List: ";
-    list.printList();
-    list.insertEnd(9);
-    list.insertAt(11,3);
-    list.insertFront(4);
-    cout<<"After Insertions: ";
-    list.printList();
-    list.deleteVal(1);
-    list.deleteVal(2);
-    list.deleteVal(5);
-    cout<<"After Deletions: ";
-    list.printList();
+    ll.push_back(9);
+    ll.intsert_at(11,3);
+    ll.push_front(4);
+    ll.deleteVal(1);
+    ll.deleteVal(2);
+    ll.deleteVal(5);
+    ll.printll();
+    delete []arr;
     return 0;
 }
