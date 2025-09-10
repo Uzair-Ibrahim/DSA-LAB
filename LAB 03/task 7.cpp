@@ -2,7 +2,7 @@
 using namespace std;
 
 class Node{
-public:
+    public:
     int data;
     Node* next;
     Node(int val){
@@ -13,7 +13,7 @@ public:
 
 class CircularList{
     Node* head;
-public:
+    public:
     CircularList(){ head = NULL; }
 
     void display(){
