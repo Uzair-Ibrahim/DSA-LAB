@@ -3,14 +3,13 @@ using namespace std;
 
 class Node{
     public:
-    int data;
     Node* next;
+    int data;
     Node(int val){
-        data=val;
+        data = val;
         next=NULL;
     }
 };
-
 
 class List{
     Node* head;
@@ -20,7 +19,7 @@ class List{
         head=tail=NULL;
     }
 
-    void pushBack(int val){
+    void push_back(int val){
         Node* newNode=new Node(val);
         if(head==NULL){
             head=tail=newNode;
@@ -30,63 +29,55 @@ class List{
         tail=newNode;
     }
 
-    Node* reverse(Node* head){
-        Node* pre=NULL;
-        Node* cur=head;
-        Node* next=NULL;
-        while(cur!=NULL){
-            next=cur->next;
-            cur->next=pre;
-            pre=cur;
-            cur=next;
-        }
-        return pre;
-    }
-    bool isPalindrome() {
-        Node* slow=head;
-        Node* fast=head;
-        while(fast&&fast->next){
-            slow=slow->next;
-            fast=fast->next->next;
-        }
-        Node* start=head;
-        Node* mid=reverse(slow);
-
-        while(mid != NULL) {
-            if(start->data != mid->data) {
-                return false;
+    void deleteVal(int val){
+        Node*temp=head;
+        Node*prev=NULL;
+        bool found=false;
+        while(temp!=NULL){
+            if(temp->data==val){
+                if(prev==NULL) head=temp->next;
+                else prev->next=temp->next;
+                delete temp; 
+                found=true;
+                return;
             }
-            start = start->next;
-            mid = mid->next;
+            else{
+                found=false;
+            }
+            prev=temp;
+            temp=temp->next;
         }
-        return true;
+        if(found)cout<<val<<" from the list has been deleted!"<<endl;
+        else cout<<val<<" is not found in list!!"<<endl;
     }
 
-    void display(){
+    void printll(){
         Node* temp=head;
         while(temp!=NULL){
             cout<<temp->data<<" -> ";
             temp=temp->next;
         }
         cout<<"NULL"<<endl;
+
     }
 };
 
 int main() {
     List ll;
-    ll.pushBack(1);
-    ll.pushBack(3);
-    ll.pushBack(1);
-    ll.pushBack(33);
+    ll.push_back(9);
+    ll.push_back(1);
+    ll.push_back(2);
+    ll.push_back(5);
+    ll.push_back(4);
+    ll.push_back(3);
+    cout<<"list before deletion:"<<endl;
+    ll.printll();
     
-    ll.display();
+    int val;
+    cout<<"enter value you want to delete: ";
+    cin>>val;
 
-    bool isPal=ll.isPalindrome();
-    if(isPal){
-        cout<<"this is a palindrome!"<<endl;
-    }
-    else{
-        cout<<"this is not a palindrome!"<<endl;
-    }
+    ll.deleteVal(val);
+    ll.printll();
     return 0;
 }
