@@ -13,7 +13,7 @@ Algorithm to concatenate two doubly linked lists L and M:
 using namespace std;
 
 class Node{
-public:
+    public:
     int data;
     Node* next;
     Node* prev;
@@ -25,7 +25,7 @@ public:
 };
 
 class DoublyList{
-public:
+    public:
     Node* head;
     Node* tail;
     DoublyList(){ head = tail = NULL; }
