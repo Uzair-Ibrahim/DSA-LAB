@@ -13,7 +13,6 @@ public:
         prev = nullptr;
     }
 };
-
 class List {
 public:
     Node* head;
