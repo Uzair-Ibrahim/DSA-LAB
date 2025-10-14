@@ -5,7 +5,7 @@ public:
     int data;
     Node* next;
     Node* prev;
-    Node(int d):data(d),next(nullptr),prev(nullptr){}
+    Node(int d):data(d),next(NULL),prev(NULL){}
 };
 class doubly{
 public:
