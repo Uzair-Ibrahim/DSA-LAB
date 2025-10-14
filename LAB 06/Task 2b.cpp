@@ -4,13 +4,13 @@ class Node{
 public:
     int data;
     Node* next;
-    Node(int d):data(d),next(nullptr){}
+    Node(int d):data(d),next(NULL){}
 };
 class List{
 public:
     Node* head;
     Node* tail;
-    List():head(nullptr),tail(nullptr){}
+    List():head(NULL),tail(NULL){}
     void append(int d){
         Node* n=new Node(d);
         if(!head) head=tail=n;
