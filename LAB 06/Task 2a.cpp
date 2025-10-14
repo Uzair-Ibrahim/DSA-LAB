@@ -11,7 +11,7 @@ class doubly{
 public:
     Node* head;
     Node* tail;
-    doubly():head(nullptr),tail(nullptr){}
+    doubly():head(NULL),tail(NULL){}
     void append(int d){
         Node* n=new Node(d);
         if(!head) head=tail=n;
