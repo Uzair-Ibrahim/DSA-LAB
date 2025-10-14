@@ -5,7 +5,6 @@ class Node {
 public:
     int data;
     Node* next;
-
     Node(int val) : data(val), next(NULL) {}
 };
 
@@ -36,7 +35,6 @@ void pop_back(Node*& head) {
     delete temp->next;
     temp->next = NULL;
 }
-
 void pop_pos(Node*& head, int position) {
     if (head == NULL) {
         cout << "List is empty." << endl;
@@ -58,7 +56,6 @@ void pop_pos(Node*& head, int position) {
     delete temp->next;
     temp->next = next;
 }
-
 void display(Node* head) {
     while (head) {
         cout << head->data << " -> ";
@@ -66,27 +63,21 @@ void display(Node* head) {
     }
     cout << "NULL" << endl;
 }
-
 int main() {
     Node* head = new Node(1);
     head->next = new Node(2);
     head->next->next = new Node(3);
     head->next->next->next = new Node(4);
-
     cout << "Original List: ";
     display(head);
-
     pop_front(head);
     cout << "After Deleting from Front: ";
     display(head);
-
     pop_back(head);
     cout << "After Deleting from Last: ";
     display(head);
-
     pop_pos(head, 1);
     cout << "After Deleting at Position 1: ";
     display(head);
-
     return 0;
 }
