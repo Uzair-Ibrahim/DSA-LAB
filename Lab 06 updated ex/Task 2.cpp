@@ -44,28 +44,41 @@ public:
     }
 };
 
+class stacknode{
+public:
+    string data;
+    stacknode* next;
+    stacknode(string d){
+        data=d;
+        next=NULL;
+    }
+};
+
 class stack{
 public:
-    string arr[100];
-    int topindex;
+    stacknode* topnode;
     stack(){
-        topindex=-1;
+        topnode=NULL;
     }
     void push(string x){
-        if(topindex<99){
-            topindex++;
-            arr[topindex]=x;
-        }
+        stacknode* n=new stacknode(x);
+        n->next=topnode;
+        topnode=n;
     }
     void pop(){
-        if(topindex>=0)
-            topindex--;
+        if(topnode!=NULL){
+            stacknode* temp=topnode;
+            topnode=topnode->next;
+            delete temp;
+        }
     }
     bool empty(){
-        return topindex==-1;
+        return topnode==NULL;
     }
     string top(){
-        return arr[topindex];
+        if(topnode!=NULL)
+            return topnode->data;
+        return "";
     }
 };
 
@@ -81,13 +94,11 @@ int main(){
     history.showcurrent();
     cout<<"All pages: ";
     history.showall();
-
     for(int i=0;i<2;i++){
         if(!s.empty())
             s.pop();
         history.removefront();
     }
-
     cout<<"After going back twice:"<<endl;
     cout<<"Current page: ";
     history.showcurrent();
