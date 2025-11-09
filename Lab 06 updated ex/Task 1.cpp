@@ -1,8 +1,10 @@
 #include <iostream>
 using namespace std; 
+
 void push_back(char *arr, char val, int up){
     arr[up] = val;
 }
+
 char pop_back(char *arr, int up){ 
     return arr[up]; 
 }
