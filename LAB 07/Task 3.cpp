@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
 using namespace std;
+
 struct Runner {
     string name;
-    int time; 
+    int time;
 };
 
 void merge(Runner arr[], int left, int mid, int right) {
@@ -35,17 +36,15 @@ void mergeSort(Runner arr[], int left, int right) {
 int main() {
     const int N = 10;
     Runner runners[N];
-    cout << "Enter names and finish times (in seconds) of 10 participants:\n";
     for (int i = 0; i < N; i++) {
-        cout << "Participant " << i+1 << " Name: ";
-        cin >> runners[i].name;
-        cout << "Finish Time (seconds): ";
-        cin >> runners[i].time;
+        cout << "Enter name and finish time for runner " << i+1 << ": ";
+        cin >> runners[i].name >> runners[i].time;
     }
     mergeSort(runners, 0, N-1);
-    cout << "\nTop 5 Fastest Runners:\n";
+    cout << "\nTop 5 fastest runners:\n";
     for (int i = 0; i < 5; i++) {
-        cout << runners[i].name << " - " << runners[i].time << " seconds\n";
+        cout << i+1 << ". " << runners[i].name << " - " 
+             << runners[i].time << " seconds\n";
     }
     return 0;
 }
