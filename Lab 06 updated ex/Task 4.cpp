@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 class node{
@@ -63,12 +63,9 @@ int main(){
     s.push(")");
     s.push("+");
     s.push("1");
-
     cout<<"Stack before evaluation:\n";
     s.display();
-
-    double res = 12 + 13 - 5*(0.5 + 0.5) + 1;
-
+    double res=12 + 13 - 5*(0.5 + 0.5) + 1;
     stack temp;
     while(!s.empty()){
         temp.push(s.top());
@@ -79,7 +76,6 @@ int main(){
         s.push(temp.top());
         temp.pop();
     }
-
     cout<<"\nStack after inserting result:\n";
     s.display();
 }
