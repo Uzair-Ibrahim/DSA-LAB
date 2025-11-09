@@ -29,40 +29,33 @@ public:
 class BST {
 private:
     Node* root;
-
     Node* insert(Node* node, Student s) {
         if (!node) return new Node(s);
         if (s.name < node->data.name) node->left = insert(node->left, s);
         else if (s.name > node->data.name) node->right = insert(node->right, s);
         return node;
     }
-
     Node* search(Node* node, string name) {
         if (!node || node->data.name == name) return node;
         if (name < node->data.name) return search(node->left, name);
         return search(node->right, name);
     }
-
     void inorder(Node* node) {
         if (!node) return;
         inorder(node->left);
         cout << node->data.name << " " << node->data.roll << " " << node->data.score << "\n";
         inorder(node->right);
     }
-
 public:
     BST() {
         root = nullptr;
     }
-
     void insert(Student s) {
         root = insert(root, s);
     }
-
     Node* search(string name) {
         return search(root, name);
     }
-
     void inorder() {
         inorder(root);
     }
@@ -81,7 +74,6 @@ int main() {
         {"Ivan", 9, 6},
         {"Judy", 10, 30}
     };
-
     BST tree;
     tree.insert(arr[0]);
     tree.insert(arr[2]);
@@ -90,14 +82,11 @@ int main() {
     tree.insert(arr[1]);
     tree.insert(arr[3]);
     tree.insert(arr[5]);
-
     cout << "Initial BST:\n";
     tree.inorder();
-
     string name;
     cout << "\nEnter student name to search: ";
     cin >> name;
-
     Node* found = tree.search(name);
     if (found) {
         cout << "Found " << name << " with roll " << found->data.roll
