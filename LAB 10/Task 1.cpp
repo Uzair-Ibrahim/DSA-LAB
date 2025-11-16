@@ -10,28 +10,29 @@ public:
         Next = NULL;
     }
 };
-
 class MaxHeap {
     Node* Head;
-    int Size;
-
+   int Size;
     Node* getNode(int index) {
         Node* temp = Head;
         for (int i = 0; i < index && temp; i++)
             temp = temp->Next;
         return temp;
     }
-
-    int parent(int i) { return (i - 1) / 2; }
-    int left(int i) { return 2 * i + 1; }
-    int right(int i) { return 2 * i + 2; }
-
+    int parent(int i) { 
+        return (i - 1) / 2; 
+    }
+    int left(int i) { 
+        return 2 * i + 1; 
+    }
+    int right(int i) { 
+        return 2 * i + 2; 
+    }
     void swapNodes(Node* a, Node* b) {
         int t = a->Value;
         a->Value = b->Value;
         b->Value = t;
     }
-
     void heapify_up(int index) {
         while (index != 0) {
             int p = parent(index);
@@ -43,17 +44,14 @@ class MaxHeap {
             } else break;
         }
     }
-
     void heapify_down(int index) {
         while (true) {
             int l = left(index);
             int r = right(index);
             int max_index = index;
-
             Node* current = getNode(index);
             Node* leftNode = getNode(l);
             Node* rightNode = getNode(r);
-
             if (l < Size && leftNode->Value > current->Value) max_index = l;
             if (r < Size && rightNode->Value > getNode(max_index)->Value) max_index = r;
 
@@ -63,7 +61,6 @@ class MaxHeap {
             } else break;
         }
     }
-
 public:
     MaxHeap() {
         Head = NULL;
@@ -81,7 +78,6 @@ public:
         Size++;
         heapify_up(Size - 1);
     }
-
     void update_key(int index, int new_val) {
         if (index >= Size) {
             cout << "Index out of bounds" << endl;
@@ -93,7 +89,6 @@ public:
         if (new_val > old_val) heapify_up(index);
         else heapify_down(index);
     }
-
     void delete_element(int index) {
         if (index >= Size) {
             cout << "Index out of bounds" << endl;
@@ -102,8 +97,6 @@ public:
         Node* lastNode = getNode(Size - 1);
         Node* delNode = getNode(index);
         swapNodes(delNode, lastNode);
-
-        // Remove last node
         if (Size == 1) {
             delete Head;
             Head = NULL;
@@ -115,7 +108,6 @@ public:
         Size--;
         if (index < Size) heapify_down(index);
     }
-
     void printHeap() {
         Node* temp = Head;
         while (temp) {
@@ -128,22 +120,17 @@ public:
 
 int main() {
     MaxHeap heap;
-
-    // Build heap from values 8,7,6,5,4
     heap.insert(8);
     heap.insert(7);
     heap.insert(6);
     heap.insert(5);
     heap.insert(4);
-
     cout << "Initial Max Heap: ";
     heap.printHeap();
-
     cout << "\nUpdate index 2 to 10" << endl;
     heap.update_key(2, 10);
     cout << "Heap after update: ";
     heap.printHeap();
-
     cout << "\nDelete element at index 1" << endl;
     heap.delete_element(1);
     cout << "Heap after delete: ";
