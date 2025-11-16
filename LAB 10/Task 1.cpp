@@ -4,9 +4,15 @@ using namespace std;
 class MaxHeap {
     int heap[100];
     int size;
-    int parent(int i) { return (i - 1) / 2; }
-    int left(int i) { return 2 * i + 1; }
-    int right(int i) { return 2 * i + 2; }
+    int parent(int i) { 
+        return (i - 1) / 2; 
+    }
+    int left(int i) { 
+        return 2 * i + 1; 
+    }
+    int right(int i) { 
+        return 2 * i + 2; 
+    }
     void heapify_up(int i) {
         while (i != 0 && heap[parent(i)] < heap[i]) {
             swap(heap[i], heap[parent(i)]);
