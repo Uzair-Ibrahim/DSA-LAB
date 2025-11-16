@@ -96,3 +96,15 @@ int main() {
     cout << "Final AVL (inorder): ";
     tree.Display();
 }
+
+
+/*
+->Insert 15 → goes as right child of 10.
+
+->Height of AVL tree after insertion = 3
+
+->No rotations needed, because tree remains balanced.
+
+->If the tree had become right-heavy, left rotation would move the right child up and rebalance the tree.
+
+*/
