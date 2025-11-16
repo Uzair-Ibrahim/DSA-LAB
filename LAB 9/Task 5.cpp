@@ -16,7 +16,6 @@ public:
 
 class AVL {
     Node* Root;
-
     int Height(Node* node) { 
         return node ? node->Height : 0; 
     }
@@ -116,9 +115,6 @@ int main() {
     tree.Insert(40);
     tree.Insert(60);
     tree.Insert(80);
-    tree.Insert(55); 
-    tree.LeftRotateRoot();
-    cout << "AVL tree after inserting 55 and left rotation on root (inorder): ";
     tree.Display();
     int k = 3;
     tree.KthSmallestLargest(k);
